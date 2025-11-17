@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import PortfolioHeader from "@/components/PortfolioHeader";
+import PortfolioFooter from "@/components/PortfolioFooter";
 import SEO from "@/components/SEO";
 
 const NotFound = () => {
@@ -13,9 +13,9 @@ const NotFound = () => {
         ogType="website"
       />
 
-      <Header />
+      <PortfolioHeader activeCategory="" />
 
-      <main id="main-content" className="min-h-screen flex items-center justify-center px-8 animate-fade-in">
+      <main className="min-h-screen flex items-center justify-center px-8 pt-20 animate-fade-in">
         <div className="text-center max-w-2xl">
           <h1 className="text-7xl md:text-9xl font-light tracking-tight mb-8">
             404
@@ -35,7 +35,7 @@ const NotFound = () => {
         </div>
       </main>
 
-      <Footer />
+      <PortfolioFooter />
     </>
   );
 };
