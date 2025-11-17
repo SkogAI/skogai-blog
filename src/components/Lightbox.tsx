@@ -150,26 +150,12 @@ const Lightbox = ({ images, initialIndex, onClose }: LightboxProps) => {
         className="relative w-full h-full flex items-center justify-center px-[10%]"
         onClick={handleClick}
       >
-        {currentImage.type === 'video' ? (
-          <video
-            ref={imageRef}
-            src={currentImage.videoSrc}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="max-w-full max-h-[85vh] object-contain transition-opacity duration-300 pointer-events-none"
-          >
-            <source src={currentImage.videoSrc} type="video/mp4" />
-          </video>
-        ) : (
-          <img
-            ref={imageRef}
-            src={currentImage.highResSrc || currentImage.src}
-            alt={currentImage.alt}
-            className="max-w-full max-h-[85vh] object-contain transition-opacity duration-300 pointer-events-none"
-          />
-        )}
+        <img
+          ref={imageRef}
+          src={currentImage.src}
+          alt={currentImage.alt}
+          className="max-w-full max-h-[85vh] object-contain transition-opacity duration-300 pointer-events-none"
+        />
       </div>
     </div>
   );
