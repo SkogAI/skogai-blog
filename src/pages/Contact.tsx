@@ -35,7 +35,6 @@ const Contact = () => {
     defaultValues: {
       name: "",
       email: "",
-      company: "",
       message: "",
     },
   });
