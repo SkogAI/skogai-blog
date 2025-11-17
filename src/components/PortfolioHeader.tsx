@@ -108,22 +108,7 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
             "ABOUT"
           )}
         </Link>
-
-        <Link
-          to="/newsletter"
-          className="text-[10px] md:text-[11px] uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors font-inter whitespace-nowrap"
-          onMouseEnter={() => setHoveredItem('newsletter')}
-          onMouseLeave={() => setHoveredItem(null)}
-        >
-          {hoveredItem === 'newsletter' ? (
-            <TextRoll duration={0.3} getEnterDelay={(i) => i * 0.02} getExitDelay={(i) => i * 0.02}>
-              NEWSLETTER
-            </TextRoll>
-          ) : (
-            "NEWSLETTER"
-          )}
-        </Link>
-        </div>
+      </div>
 
         {/* Mobile Menu Overlay */}
         {mobileMenuOpen && (
@@ -173,14 +158,6 @@ const PortfolioHeader = ({ activeCategory }: PortfolioHeaderProps) => {
                   className="text-lg uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors font-inter"
                 >
                   ABOUT
-                </Link>
-
-                <Link
-                  to="/newsletter"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors font-inter"
-                >
-                  NEWSLETTER
                 </Link>
               </nav>
             </div>
