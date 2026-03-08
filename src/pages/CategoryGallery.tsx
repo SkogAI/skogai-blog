@@ -6,6 +6,7 @@ import PortfolioFooter from "@/components/PortfolioFooter";
 import MasonryGallery from "@/components/MasonryGallery";
 import Lightbox from "@/components/Lightbox";
 import SEO from "@/components/SEO";
+import { fetchPhotosByCategory, transformToGalleryItem } from "@/services/gallery";
 import { fetchMixedMedia } from "@/services/pexels";
 
 const validCategories = ['selected', 'commissioned', 'editorial', 'personal', 'all'];
@@ -19,7 +20,6 @@ const CategoryGallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [page, setPage] = useState(1);
 
-  // Validate category
   if (!category || !validCategories.includes(category.toLowerCase())) {
     return <Navigate to="/" replace />;
   }
@@ -31,10 +31,16 @@ const CategoryGallery = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchMixedMedia(categoryUpper, page, 20);
-        setImages(data.items);
+
+        const dbPhotos = await fetchPhotosByCategory(category!.toLowerCase());
+        if (dbPhotos.length > 0) {
+          setImages(dbPhotos.map(transformToGalleryItem));
+        } else {
+          const data = await fetchMixedMedia(categoryUpper, page, 20);
+          setImages(data.items);
+        }
       } catch (err) {
-        console.error('Error fetching Pexels media:', err);
+        console.error('Error fetching media:', err);
         setError('Failed to load images. Please try again later.');
       } finally {
         setLoading(false);
@@ -42,7 +48,7 @@ const CategoryGallery = () => {
     };
 
     loadImages();
-  }, [categoryUpper, page]);
+  }, [categoryUpper, page, category]);
 
   const handleImageClick = (index: number) => {
     setLightboxIndex(index);

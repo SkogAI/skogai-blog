@@ -5,6 +5,7 @@ import PortfolioFooter from "@/components/PortfolioFooter";
 import MasonryGallery from "@/components/MasonryGallery";
 import Lightbox from "@/components/Lightbox";
 import SEO from "@/components/SEO";
+import { fetchPhotosByCategory, transformToGalleryItem } from "@/services/gallery";
 import { fetchMixedMedia } from "@/services/pexels";
 
 const Index = () => {
@@ -14,7 +15,6 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Homepage always shows SELECTED category
   const activeCategory = "SELECTED";
 
   useEffect(() => {
@@ -22,18 +22,26 @@ const Index = () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchMixedMedia(activeCategory, 1, 20);
-        setDisplayImages(data.items);
+
+        // Try database first
+        const dbPhotos = await fetchPhotosByCategory("selected");
+        if (dbPhotos.length > 0) {
+          setDisplayImages(dbPhotos.map(transformToGalleryItem));
+        } else {
+          // Fallback to Pexels
+          const data = await fetchMixedMedia(activeCategory, 1, 20);
+          setDisplayImages(data.items);
+        }
       } catch (err) {
-        console.error('Error fetching Pexels media:', err);
-        setError('Failed to load images. Please try again later.');
+        console.error("Error loading images:", err);
+        setError("Failed to load images. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
 
     loadImages();
-  }, []); // Remove activeCategory dependency - it's now constant
+  }, []);
 
   const handleImageClick = (index: number) => {
     setLightboxIndex(index);
