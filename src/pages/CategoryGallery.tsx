@@ -20,13 +20,11 @@ const CategoryGallery = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [page, setPage] = useState(1);
 
-  if (!category || !validCategories.includes(category.toLowerCase())) {
-    return <Navigate to="/" replace />;
-  }
-
-  const categoryUpper = category.toUpperCase();
+  const isValid = category && validCategories.includes(category.toLowerCase());
+  const categoryUpper = category?.toUpperCase() || "";
 
   useEffect(() => {
+    if (!isValid) return;
     const loadImages = async () => {
       try {
         setLoading(true);
