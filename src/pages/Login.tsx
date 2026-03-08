@@ -4,7 +4,6 @@ import PortfolioHeader from "@/components/PortfolioHeader";
 import PortfolioFooter from "@/components/PortfolioFooter";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { lovable } from "@/integrations/lovable/index";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -29,8 +28,11 @@ const Login = () => {
   }, [navigate]);
 
   const handleGoogleSignIn = async () => {
-    const { error } = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin,
+      },
     });
 
     if (error) {
