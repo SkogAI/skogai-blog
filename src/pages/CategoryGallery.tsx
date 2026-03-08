@@ -46,7 +46,11 @@ const CategoryGallery = () => {
     };
 
     loadImages();
-  }, [categoryUpper, page, category]);
+  }, [categoryUpper, page, category, isValid]);
+
+  if (!isValid) {
+    return <Navigate to="/" replace />;
+  }
 
   const handleImageClick = (index: number) => {
     setLightboxIndex(index);
