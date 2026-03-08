@@ -16,7 +16,7 @@ No test runner is configured.
 
 ## Architecture
 
-Photography portfolio for "Morgan Blake" with admin CMS. Supabase project: `ibmjjzrsyrrnlviwhhlv`.
+Photography portfolio for "Morgan Blake" with admin CMS. Shared Supabase project: `vkpfnvnnpbfttedatjlb` (skogai-web). Legacy cloud project: `ibmjjzrsyrrnlviwhhlv`.
 
 ### Data flow
 
