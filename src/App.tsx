@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 import Project from "./pages/Project";
 import CategoryGallery from "./pages/CategoryGallery";
 import NotFound from "./pages/NotFound";
