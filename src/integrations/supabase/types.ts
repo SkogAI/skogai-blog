@@ -38,6 +38,104 @@ export type Database = {
         }
         Relationships: []
       }
+      gallery_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          slug: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      gallery_photos: {
+        Row: {
+          alt_text: string
+          category_id: string | null
+          client: string | null
+          created_at: string
+          details: string | null
+          file_path: string
+          height: number | null
+          id: string
+          is_video: boolean
+          location: string | null
+          photographer: string | null
+          sort_order: number
+          thumbnail_path: string | null
+          title: string | null
+          updated_at: string
+          uploaded_by: string | null
+          video_path: string | null
+          width: number | null
+        }
+        Insert: {
+          alt_text?: string
+          category_id?: string | null
+          client?: string | null
+          created_at?: string
+          details?: string | null
+          file_path: string
+          height?: number | null
+          id?: string
+          is_video?: boolean
+          location?: string | null
+          photographer?: string | null
+          sort_order?: number
+          thumbnail_path?: string | null
+          title?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+          video_path?: string | null
+          width?: number | null
+        }
+        Update: {
+          alt_text?: string
+          category_id?: string | null
+          client?: string | null
+          created_at?: string
+          details?: string | null
+          file_path?: string
+          height?: number | null
+          id?: string
+          is_video?: boolean
+          location?: string | null
+          photographer?: string | null
+          sort_order?: number
+          thumbnail_path?: string | null
+          title?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+          video_path?: string | null
+          width?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gallery_photos_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "gallery_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
